@@ -17,9 +17,11 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Color> Colors { get; set; }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
-        //    modelBuilder.Entity<Color>().ToTable("Clr");
-        //    Color tablomuzun aslında isminin Clr olduğunu varsayarsak
-        //    ve Color nesnemize yönlendirmek istersek bu yöntemi kullanıcaz.
+              //modelBuilder.HasDefaultSchema("admin");//şema
+              //modelBuilder.Entity<Color>().ToTable("Clr");
+              //Color tablomuzun aslında isminin Clr olduğunu varsayarsak
+              //ve Color nesnemize yönlendirmek istersek bu yöntemi kullanıcaz.
+              //modelBuilder.Entity<Color>().Property(p => p.ColorId).HasColumnName("ColorId");//özelliklerin veritabanı ile ilişkilendirilmesi
         //}
     }
 }

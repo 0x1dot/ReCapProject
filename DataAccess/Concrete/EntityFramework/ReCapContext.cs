@@ -15,5 +15,11 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Color>().ToTable("Clr");
+        //    Color tablomuzun aslında isminin Clr olduğunu varsayarsak
+        //    ve Color nesnemize yönlendirmek istersek bu yöntemi kullanıcaz.
+        //}
     }
 }

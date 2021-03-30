@@ -17,7 +17,7 @@ namespace ConsoleUI
                 BrandId = 1,
                 ColorId = 2,
                 DailyPrice = 700,
-                Description = "X",
+                Description = "X5",
                 ModelYear = "2020"
             };
             Console.WriteLine("Araba verisi eklendi.");

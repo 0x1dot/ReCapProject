@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace DataAccess.InMemory
         public InMemoryCarDal()
         {
             _products = new List<Car> {
-            new Car{Id=1,BrandId=1,ColorId=1,DailyPrice=10,Description="Araba",ModelYear="2021"}
+            new Car{Id=1,BrandId=1,ColorId=1,DailyPrice=10,CarName="Araba",ModelYear="2021"}
             };
         }
 
@@ -52,6 +53,11 @@ namespace DataAccess.InMemory
         }
 
         public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarDetails()
         {
             throw new NotImplementedException();
         }

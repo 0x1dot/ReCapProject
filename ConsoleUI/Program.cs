@@ -13,7 +13,22 @@ namespace ConsoleUI
             //CarTest();
             //BrandTest();
             //ColorTest();
+            //CarTest1();
+            //CustomerTest();
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            Rental rental = new Rental { CarId = 1, CustomerId = 2, RentDate = new DateTime() };
+            Console.WriteLine(rentalManager.Add(rental).Message);
+        }
 
+        private static void CustomerTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            Customer customer = new Customer { UserId = 1, CompanyName = "XXInterCyborg" };
+            Console.WriteLine(customerManager.Add(customer).Message);
+        }
+
+        private static void CarTest1()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetCarDetails();
             if (result.Success)
@@ -24,7 +39,6 @@ namespace ConsoleUI
                 }
             }
             else Console.WriteLine(result.Message);
-            
         }
 
         private static void ColorTest()

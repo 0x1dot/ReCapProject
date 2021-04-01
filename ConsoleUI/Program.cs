@@ -13,11 +13,18 @@ namespace ConsoleUI
             //CarTest();
             //BrandTest();
             //ColorTest();
+
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success)
             {
-                Console.WriteLine(car.Id + "/"+ car.CarName + "/" + car.BrandName + "/" + car.ColorName + "/" + car.ModelYear + "/" + car.DailyPrice);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.Id + "/" + car.CarName + "/" + car.BrandName + "/" + car.ColorName + "/" + car.ModelYear + "/" + car.DailyPrice);
+                }
             }
+            else Console.WriteLine(result.Message);
+            
         }
 
         private static void ColorTest()
@@ -30,15 +37,14 @@ namespace ConsoleUI
 
             colorManager.Add(color1);
             Console.WriteLine("Renk verisi eklendi.");
-
-            foreach (Color brand in colorManager.GetAll())
+            foreach (Color brand in colorManager.GetAll().Data)
             {
                 Console.WriteLine("--------------------");
                 Console.WriteLine("Renk ismi:" + brand.ColorName);
                 Console.WriteLine("--------------------");
             }
             var renk = colorManager.GetById(1);
-            Console.WriteLine(renk.ColorName + " GetById fonksiyonu çalıştırıldı.");
+            Console.WriteLine(renk.Data.ColorName + " GetById fonksiyonu çalıştırıldı.");
 
             colorManager.Delete(color1);
             Console.WriteLine("Renk verisi silindi");
@@ -55,14 +61,14 @@ namespace ConsoleUI
             brandManager.Add(brand1);
             Console.WriteLine("Marka verisi eklendi.");
 
-            foreach (Brand brand in brandManager.GetAll())
+            foreach (Brand brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine("--------------------");
                 Console.WriteLine("Marka ismi:" + brand.BrandName);
                 Console.WriteLine("--------------------");
             }
             var marka = brandManager.GetById(1);
-            Console.WriteLine(marka.BrandName + " GetById fonksiyonu çalıştırıldı.");
+            Console.WriteLine(marka.Data.BrandName + " GetById fonksiyonu çalıştırıldı.");
 
             brandManager.Delete(brand1);
             Console.WriteLine("Marka verisi silindi");
@@ -83,7 +89,7 @@ namespace ConsoleUI
             carManager.Add(car1);
             Console.WriteLine("Araba verisi eklendi.");
             
-            foreach (Car car in carManager.GetAll())
+            foreach (Car car in carManager.GetAll().Data)
             {
                 Console.WriteLine("--------------------");
                 Console.WriteLine("Model Yılı:" + car.ModelYear);
@@ -94,7 +100,7 @@ namespace ConsoleUI
                 Console.WriteLine("--------------------");
             }
             var arac = carManager.GetById(1);
-            Console.WriteLine(arac.CarName + " GetById fonksiyonu çalıştırıldı.");
+            Console.WriteLine(arac.Data.CarName + " GetById fonksiyonu çalıştırıldı.");
 
             carManager.Delete(car1);
             Console.WriteLine("Araba verisi silindi");

@@ -19,7 +19,7 @@ namespace Business.Concrete
         }
         public IResult Add(Rental rental)
         {
-            if (this.GetAll().Data.Where(r=>r.CarId == rental.CarId && r.ReturnDate == null).ToList().Count>=1)
+            if (_rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate == null).Count>=1)
             {
                 return new ErrorResult(Messages.DateInvalid);
             }

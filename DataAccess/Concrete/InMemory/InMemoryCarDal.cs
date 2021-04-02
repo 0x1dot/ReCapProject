@@ -16,7 +16,7 @@ namespace DataAccess.InMemory
         public InMemoryCarDal()
         {
             _products = new List<Car> {
-            new Car{Id=1,BrandId=1,ColorId=1,DailyPrice=10,CarName="Araba",ModelYear="2021"}
+            new Car{CarId=1,BrandId=1,ColorId=1,DailyPrice=10,CarName="Araba",ModelYear="2021"}
             };
         }
 
@@ -27,12 +27,12 @@ namespace DataAccess.InMemory
 
         public void Delete(Car car)
         {
-            Car carToDelete = _products.SingleOrDefault(p => p.Id == car.Id);
+            Car carToDelete = _products.SingleOrDefault(p => p.CarId == car.CarId);
         }
         public void Update(Car car)
         {
-            Car carToUpdate = _products.SingleOrDefault(p => p.Id == car.Id);
-            carToUpdate.Id = car.Id;
+            Car carToUpdate = _products.SingleOrDefault(p => p.CarId == car.CarId);
+            carToUpdate.CarId = car.CarId;
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
             carToUpdate.DailyPrice = car.DailyPrice;
@@ -44,7 +44,7 @@ namespace DataAccess.InMemory
         }
         public List<Car> GetById(int carId)
         {
-            return _products.Where(p => p.Id == carId).ToList();
+            return _products.Where(p => p.CarId == carId).ToList();
         }
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)

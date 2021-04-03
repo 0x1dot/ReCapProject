@@ -1,6 +1,6 @@
 USE [ReCapProject]
 GO
-/****** Object:  Table [dbo].[Brands]    Script Date: 2021-04-02 10:22:04 ******/
+/****** Object:  Table [dbo].[Brands]    Script Date: 2021-04-04 00:16:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10,7 +10,23 @@ CREATE TABLE [dbo].[Brands](
 	[BrandName] [nvarchar](100) NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Cars]    Script Date: 2021-04-02 10:22:04 ******/
+/****** Object:  Table [dbo].[CarImages]    Script Date: 2021-04-04 00:16:19 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CarImages](
+	[CarImageId] [int] IDENTITY(1,1) NOT NULL,
+	[CarId] [int] NOT NULL,
+	[ImagePath] [nvarchar](200) NOT NULL,
+	[Date] [date] NOT NULL,
+ CONSTRAINT [PK_CarImages] PRIMARY KEY CLUSTERED 
+(
+	[CarImageId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cars]    Script Date: 2021-04-04 00:16:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -28,7 +44,7 @@ CREATE TABLE [dbo].[Cars](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Colors]    Script Date: 2021-04-02 10:22:04 ******/
+/****** Object:  Table [dbo].[Colors]    Script Date: 2021-04-04 00:16:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -38,7 +54,7 @@ CREATE TABLE [dbo].[Colors](
 	[ColorName] [nvarchar](100) NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customers]    Script Date: 2021-04-02 10:22:04 ******/
+/****** Object:  Table [dbo].[Customers]    Script Date: 2021-04-04 00:16:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -53,7 +69,7 @@ CREATE TABLE [dbo].[Customers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Rentals]    Script Date: 2021-04-02 10:22:04 ******/
+/****** Object:  Table [dbo].[Rentals]    Script Date: 2021-04-04 00:16:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -70,13 +86,13 @@ CREATE TABLE [dbo].[Rentals](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 2021-04-02 10:22:04 ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 2021-04-04 00:16:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Users](
-	[UserId] [int] NOT NULL,
+	[UserId] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](50) NOT NULL,
 	[LastName] [nvarchar](50) NOT NULL,
 	[Email] [nvarchar](50) NOT NULL,
@@ -86,6 +102,11 @@ CREATE TABLE [dbo].[Users](
 	[UserId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[CarImages]  WITH CHECK ADD  CONSTRAINT [FK_CarImages_Cars] FOREIGN KEY([CarId])
+REFERENCES [dbo].[Cars] ([CarId])
+GO
+ALTER TABLE [dbo].[CarImages] CHECK CONSTRAINT [FK_CarImages_Cars]
 GO
 ALTER TABLE [dbo].[Customers]  WITH CHECK ADD  CONSTRAINT [FK_Customers_Users] FOREIGN KEY([UserId])
 REFERENCES [dbo].[Users] ([UserId])

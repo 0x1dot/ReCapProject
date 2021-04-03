@@ -5,7 +5,6 @@ using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,7 +21,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
-           _brandDal.Add(brand);
+            _brandDal.Add(brand);
             return new SuccessResult(Messages.BrandAdded);
         }
         [ValidationAspect(typeof(BrandValidator))]
@@ -34,7 +33,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandListed);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandListed);
         }
 
         public IDataResult<Brand> GetById(int brandId)

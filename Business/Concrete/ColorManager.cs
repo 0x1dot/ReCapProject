@@ -25,13 +25,8 @@ namespace Business.Concrete
             _colorDal.Add(color);
             return new SuccessResult(Messages.ColorAdded);
         }
-        [ValidationAspect(typeof(ColorValidator))]
         public IResult Delete(Color color)
         {
-            //if (true)//db'de ilişkilendirilmiş bir foreign alan varsa silme.
-            //{
-            //    return new ErrorResult(Messages.ColorNotDeleted);
-            //}
             _colorDal.Delete(color);
             return new SuccessResult(Messages.ColorDeleted);
         }

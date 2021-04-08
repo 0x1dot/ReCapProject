@@ -58,7 +58,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarImage>> GetCarImages(int carId)
         {
-            IResult result = BusinessRules.Run(CheckIfNullCarImage(carId));
+            var result = BusinessRules.Run(CheckIfNullCarImage(carId));
             if (result != null)
             {
                 return new ErrorDataResult<List<CarImage>>(result.Message);

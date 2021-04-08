@@ -22,7 +22,7 @@ namespace Core.Utilities.Helpers
 
             var result = NewPath(file);
             File.Move(sourceFile, result);
-            return result;
+            return Path.GetFileName(result);
         }
         public static string NewPath(IFormFile file)
         {

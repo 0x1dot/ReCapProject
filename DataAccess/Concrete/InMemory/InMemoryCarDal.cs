@@ -57,7 +57,27 @@ namespace DataAccess.InMemory
             throw new NotImplementedException();
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarDetailsByBrandName(string brandName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetCarDetailsByColorName(string colorName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetDtoByBrandId(int brandId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CarDetailDto> GetDtoByColorId(int colorId)
         {
             throw new NotImplementedException();
         }

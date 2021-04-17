@@ -14,4 +14,5 @@ namespace Business.ValidationRules
                 .MinimumLength(2);
         }
     }
+    
 }

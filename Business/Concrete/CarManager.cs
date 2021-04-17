@@ -60,14 +60,20 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == CarId));
         }
-        public IDataResult<List<CarDetailDto>> GetDtoById(int CarId)
+        [CacheAspect]
+        public IDataResult<CarDetailDto> GetDtoById(int CarId)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CarId == CarId));
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetails(c => c.CarId == CarId));
         }
         [CacheAspect]
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetDtoBrandAndColorId(int brandId, int colorId)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails(c => c.BrandId == brandId && c.ColorId == colorId));
+        }
+        [CacheAspect]
+        public IDataResult<List<CarDetailDto>> GetCarsDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails());
         }
         private IResult CheckIfWorkingTimeSystem()
         {

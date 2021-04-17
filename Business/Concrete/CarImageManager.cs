@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.ValidationRules;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
@@ -22,6 +23,7 @@ namespace Business.Concrete
         {
             _carImageDal = carImageDal;
         }
+        [CacheRemoveAspect("ICarService.Get")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file, CarImage carImage)
         {

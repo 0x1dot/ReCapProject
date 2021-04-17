@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -14,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         RentalDetailDto _carDetailDto;
 
-        public List<RentalDetailDto> GetRentalDetails()
+        public List<RentalDetailDto> GetRentalDetails(Expression<Func<RentalDetailDto, bool>> filter = null)
         {
             using (ReCapContext reCapContext = new ReCapContext())
             {
@@ -30,13 +31,14 @@ namespace DataAccess.Concrete.EntityFramework
                              select new RentalDetailDto
                              {
                               RentalId = r.RentalId,
+                              CarId = r.CarId,
                               BrandName = b.BrandName,
                               FirstName = u.FirstName,
                               LastName = u.LastName,
                               RentDate = r.RentDate,
                               ReturnDate = r.ReturnDate
                              };
-                return result.ToList();
+                return filter != null ? result.Where(filter).ToList() : result.ToList();
             }
         }
     }

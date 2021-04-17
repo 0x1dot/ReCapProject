@@ -79,5 +79,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("checkrentaldates")]
+        public IActionResult GetRentalsCar(Rental rental)
+        {
+            var result = _rentalService.GetRentalsCar(rental);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        
     }
 }

@@ -50,5 +50,24 @@ namespace Business.Constants
         public static string UsersListed = "Kullanıcılar Listelendi";
         public static string UserListed = "Kullanıcı Listelendi";
         public static string UserUpdated = "Kullanıcı Güncellendi";
+
+        public static string CreditCardAddedSuccessfully = "Kredi kaınız başarıyla kaydedilmiştir.";
+        public static string CreditCardDeletedSuccessfully = "Kredi kartınız sistemden başarı ile silinmiştir.";
+        public static string GetCreditCardByCardIdSuccessfully = "Kart detayları başarıyla getirildi.";
+        public static string GetAllCreditCardsSuccessfully = "Tüm kredi kartları başarıyla getirildi.";
+        public static string GetUserCardListSuccessfully = "Kullanıcının tüm kartları başarıyla getirildi.";
+        public static string GetCreditCardByCardTypeIdSuccessfully = "Kart tipine göre karlar başarı ile listelendi.";
+
+       
+        public static string CardTypeAddedSuccessfully = "Kart tipi başarı ile eklendi.";
+        public static string CardTypeUpdatedSuccessfully = "Kart tipi başarıyla güncellendi.";
+        public static string CardTypeDeletedSuccessfully = "Kart tipi başarıyla silindi.";
+        public static string GetAllCardTypesSuccessfully = "Tüm kart tipleri başarı ile listelendi";
+        public static string GetTypeByIdSuccessfully = "Kart tipi detayları başarıyla listelendi.";
+        public static string SelectedCardGetsSuccessfully = "Müşterinin 'öncelikli' olarak tanımlanmış kartı başarı ile getirildi. ";
+
+       
+        public static string PaymentSuccessfull = "Ödeme başarı ile tamamlandı.";
+        public static string PaymentError = "Ödeme sırasında bir hata oluştu";
     }
 }

@@ -11,18 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersController : ControllerBase
+    public class CreditCardsController : ControllerBase
     {
-        ICustomerService _customerService;
+        ICreditCardService _creditCardService;
 
-        public CustomersController(ICustomerService customerService)
+        public CreditCardsController(ICreditCardService creditCardService)
         {
-            _customerService = customerService;
+            _creditCardService = creditCardService;
         }
         [HttpPost("add")]
-        public IActionResult Add(Customer customer)
+        public IActionResult Add(CreditCard creditCard)
         {
-            var result = _customerService.Add(customer);
+            var result = _creditCardService.Add(creditCard);
             if (result.Success)
             {
                 return Ok(result);
@@ -30,9 +30,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(Customer customer)
+        public IActionResult Update(CreditCard creditCard)
         {
-            var result = _customerService.Update(customer);
+            var result = _creditCardService.Update(creditCard);
             if (result.Success)
             {
                 return Ok(result);
@@ -40,9 +40,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public IActionResult Delete(Customer customer)
+        public IActionResult Delete(CreditCard creditCard)
         {
-            var result = _customerService.Add(customer);
+            var result = _creditCardService.Delete(creditCard);
             if (result.Success)
             {
                 return Ok(result);
@@ -52,28 +52,27 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _customerService.GetAll();
+            var result = _creditCardService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int customerId)
+        [HttpGet("getcardbycustomerid")]
+        public IActionResult GetCardByCustomerId(int customerId)
         {
-            var result = _customerService.GetById(customerId);
+            var result = _creditCardService.GetCardByCustomerId(customerId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        [HttpGet("getcustomersdetail")]
-        public IActionResult GetCustomersDetail()
+        [HttpGet("getcardsbycustomerid")]
+        public IActionResult GetCardsByCustomerId(int customerId)
         {
-            var result = _customerService.GetCustomersDetail
-                ();
+            var result = _creditCardService.GetCardsByCustomerId(customerId);
             if (result.Success)
             {
                 return Ok(result);

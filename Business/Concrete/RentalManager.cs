@@ -24,7 +24,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            if (_rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate == null).Count>=1)
+            if (_rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate == null).Count >= 1)
             {
                 return new ErrorResult(Messages.DateInvalid);
             }
@@ -49,6 +49,22 @@ namespace Business.Concrete
         public IDataResult<Rental> GetById(int rentalId)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == rentalId));
+        }
+        public IResult GetRentalsCar(Rental rental)
+        {
+            if (rental.RentDate > rental.ReturnDate) return new ErrorResult("Teslim tarihi alış tarihinden küçük olamaz.");
+            var result = _rentalDal.GetRentalDetails(r => r.CarId == rental.CarId).
+                Where(r =>
+                        ((r.RentDate == rental.RentDate) && (r.ReturnDate == rental.ReturnDate)) ||
+                        ((rental.RentDate >= r.RentDate) && (rental.RentDate <= r.ReturnDate)) ||
+                        ((rental.ReturnDate >= r.RentDate) && (rental.ReturnDate <= r.ReturnDate))).ToList();
+
+            if (result.Count > 0)
+            {
+                string errorMessage = "seçilen tarihler arasında araç zaten kiralanmış.";
+                return new ErrorResult(errorMessage);
+            }
+            return new SuccessResult("seçilen tarihler arasında araç kiralanabilir.");
         }
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)

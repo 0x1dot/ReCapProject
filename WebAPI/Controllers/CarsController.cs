@@ -99,11 +99,10 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
-        [HttpGet("getcardetails")]
-        public IActionResult GetCarDetails()
+        [HttpGet("getcarsdetails")]
+        public IActionResult GetCarsDetails()
         {
-            var result = _carService.GetCarDetails();
+            var result = _carService.GetCarsDetails();
             if (result.Success)
             {
                 return Ok(result);
@@ -130,5 +129,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getdtobrandandcolorid")]
+        public IActionResult GetDtoBrandAndColorId(int brandId, int colorId)
+        {
+            var result = _carService.GetDtoBrandAndColorId(brandId, colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
     }
 }

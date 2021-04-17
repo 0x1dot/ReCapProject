@@ -16,6 +16,21 @@ namespace ConsoleUI
             //CarTest1();
             //CustomerTest();
             //RentalTest();
+            //CreditTypeTest();
+            CreditCardManager creditCardManager = new CreditCardManager(new EfCreditCardDal());
+            var s = creditCardManager.GetCardByCustomerId(7);
+            Console.WriteLine(s.Data.Cvv);
+            
+
+        }
+
+        private static void CreditTypeTest()
+        {
+            CreditCardTypeManager creditCardTypeManager = new CreditCardTypeManager(new EfCreditCardTypeDal());
+            foreach (var c in creditCardTypeManager.GetAll().Data)
+            {
+                Console.WriteLine(c.TypeName);
+            }
         }
 
         private static void RentalTest()
@@ -35,7 +50,7 @@ namespace ConsoleUI
         private static void CarTest1()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            var result = carManager.GetCarDetails();
+            var result = carManager.GetCarsDetails();
             if (result.Success)
             {
                 foreach (var car in result.Data)

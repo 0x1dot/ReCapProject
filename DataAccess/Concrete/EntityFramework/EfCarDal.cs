@@ -20,35 +20,33 @@ namespace DataAccess.Concrete.EntityFramework
         }
         public List<CarDetailDto> GetCarsDetails(Expression<Func<CarDetailDto, bool>> filter = null)
         {
-            using (ReCapContext reCapContext = new ReCapContext())
-            {
-                var result = from c in reCapContext.Cars
-                             join b in reCapContext.Brands
-                             on c.BrandId equals b.BrandId
-                             join cl in reCapContext.Colors
-                             on c.ColorId equals cl.ColorId
-                             join g in reCapContext.Gears
-                             on c.GearId equals g.GearId
-                             join f in reCapContext.Fuels
-                             on c.FuelId equals f.FuelId
-                             select new CarDetailDto
-                             {
-                                 CarId = c.CarId,
-                                 BrandId = b.BrandId,
-                                 BrandName = b.BrandName,
-                                 ColorId = cl.ColorId,
-                                 ColorName = cl.ColorName,
-                                 GearId = c.GearId,
-                                 GearName = g.GearName,
-                                 FuelId = c.FuelId,
-                                 FuelName = f.FuelName,
-                                 CarName = c.CarName,
-                                 DailyPrice = c.DailyPrice,
-                                 ModelYear = c.ModelYear,
-                                 ImagePath = (from ci in reCapContext.CarImages where ci.CarId == c.CarId select ci.ImagePath).FirstOrDefault()
-                             };
-                return filter != null ? result.Where(filter).ToList() : result.ToList();
-            }
+            using ReCapContext reCapContext = new ReCapContext();
+            var result = from c in reCapContext.Cars
+                         join b in reCapContext.Brands
+                         on c.BrandId equals b.BrandId
+                         join cl in reCapContext.Colors
+                         on c.ColorId equals cl.ColorId
+                         join g in reCapContext.Gears
+                         on c.GearId equals g.GearId
+                         join f in reCapContext.Fuels
+                         on c.FuelId equals f.FuelId
+                         select new CarDetailDto
+                         {
+                             Id = c.Id,
+                             BrandId = b.BrandId,
+                             BrandName = b.BrandName,
+                             ColorId = cl.ColorId,
+                             ColorName = cl.ColorName,
+                             GearId = c.GearId,
+                             GearName = g.GearName,
+                             FuelId = c.FuelId,
+                             FuelName = f.FuelName,
+                             CarName = c.CarName,
+                             DailyPrice = c.DailyPrice,
+                             ModelYear = c.ModelYear,
+                             ImagePath = (from ci in reCapContext.CarImages where ci.CarId == c.Id select ci.ImagePath).FirstOrDefault()
+                         };
+            return filter != null ? result.Where(filter).ToList() : result.ToList();
         }
 
         public List<CarDetailDto> GetDtoByBrandId(int brandId)

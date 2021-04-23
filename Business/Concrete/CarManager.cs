@@ -19,13 +19,13 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal _carDal;
+        readonly ICarDal _carDal;
 
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
         }
-        [SecuredOperation("admin,customer")]
+        //[SecuredOperation("admin,customer")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         [PerformanceAspect(8)]
@@ -58,12 +58,12 @@ namespace Business.Concrete
         [PerformanceAspect(4)]
         public IDataResult<Car> GetById(int CarId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == CarId));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == CarId));
         }
         [CacheAspect]
         public IDataResult<CarDetailDto> GetDtoById(int CarId)
         {
-            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetails(c => c.CarId == CarId));
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetails(c => c.Id == CarId));
         }
         [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetDtoBrandAndColorId(int brandId, int colorId)
@@ -93,7 +93,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
         }
-        [SecuredOperation("admin,customer")]
+        //[SecuredOperation("admin,customer")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)

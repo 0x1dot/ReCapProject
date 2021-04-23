@@ -11,12 +11,12 @@ namespace DataAccess.InMemory
 {
     public class InMemoryCarDal : ICarDal
     {
-        List<Car> _products;
+        readonly List<Car> _products;
 
         public InMemoryCarDal()
         {
             _products = new List<Car> {
-            new Car{CarId=1,BrandId=1,ColorId=1,DailyPrice=10,CarName="Araba",ModelYear="2021"}
+            new Car{Id=1,BrandId=1,ColorId=1,DailyPrice=10,CarName="Araba",ModelYear="2021"}
             };
         }
 
@@ -27,12 +27,12 @@ namespace DataAccess.InMemory
 
         public void Delete(Car car)
         {
-            Car carToDelete = _products.SingleOrDefault(p => p.CarId == car.CarId);
+            Car carToDelete = _products.SingleOrDefault(p => p.Id == car.Id);
         }
         public void Update(Car car)
         {
-            Car carToUpdate = _products.SingleOrDefault(p => p.CarId == car.CarId);
-            carToUpdate.CarId = car.CarId;
+            Car carToUpdate = _products.SingleOrDefault(p => p.Id == car.Id);
+            carToUpdate.Id = car.Id;
             carToUpdate.BrandId = car.BrandId;
             carToUpdate.ColorId = car.ColorId;
             carToUpdate.DailyPrice = car.DailyPrice;
@@ -44,7 +44,7 @@ namespace DataAccess.InMemory
         }
         public List<Car> GetById(int carId)
         {
-            return _products.Where(p => p.CarId == carId).ToList();
+            return _products.Where(p => p.Id == carId).ToList();
         }
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)

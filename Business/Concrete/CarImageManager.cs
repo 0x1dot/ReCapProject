@@ -17,7 +17,7 @@ namespace Business.Concrete
 {
     public class CarImageManager : ICarImageService
     {
-        ICarImageDal _carImageDal;
+        readonly ICarImageDal _carImageDal;
 
         public CarImageManager(ICarImageDal carImageDal)
         {
@@ -94,8 +94,10 @@ namespace Business.Concrete
                 var result = _carImageDal.GetAll(i => i.CarId == CarId).Any();
                 if (!result)
                 {
-                    List<CarImage> images = new List<CarImage>();
-                    images.Add(new CarImage() { CarId = CarId, Date = DateTime.Now, ImagePath = path });
+                    List<CarImage> images = new List<CarImage>
+                    {
+                        new CarImage() { CarId = CarId, Date = DateTime.Now, ImagePath = path }
+                    };
                     return new SuccessDataResult<List<CarImage>>(images);
                 }
 

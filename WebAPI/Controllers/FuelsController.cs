@@ -11,18 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BrandsController : ControllerBase
+    public class FuelsController : ControllerBase
     {
-        readonly IBrandService _brandService;
+        IFuelService _fuelService;
 
-        public BrandsController(IBrandService brandService)
+        public FuelsController(IFuelService fuelService)
         {
-            _brandService = brandService;
+            _fuelService = fuelService;
         }
         [HttpPost("add")]
-        public IActionResult Add(Brand brand)
+        public IActionResult Add(Fuel fuel)
         {
-            var result = _brandService.Add(brand);
+            var result = _fuelService.Add(fuel);
             if (result.Success)
             {
                 return Ok(result);
@@ -30,9 +30,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(Brand brand)
+        public IActionResult Update(Fuel fuel)
         {
-            var result = _brandService.Update(brand);
+            var result = _fuelService.Update(fuel);
             if (result.Success)
             {
                 return Ok(result);
@@ -40,9 +40,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("delete")]
-        public IActionResult Delete(Brand brand)
+        public IActionResult Delete(Fuel fuel)
         {
-            var result = _brandService.Add(brand);
+            var result = _fuelService.Add(fuel);
             if (result.Success)
             {
                 return Ok(result);
@@ -52,17 +52,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _brandService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int brandId)
-        {
-            var result = _brandService.GetById(brandId);
+            var result = _fuelService.GetAll();
             if (result.Success)
             {
                 return Ok(result);

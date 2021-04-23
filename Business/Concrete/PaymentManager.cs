@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -9,19 +12,18 @@ namespace Business.Concrete
 {
     public class PaymentManager : IPaymentService
     {
-        IPaymentDal _paymentDal;
+        readonly IPaymentDal _paymentDal;
 
         public PaymentManager(IPaymentDal paymentDal)
         {
             _paymentDal = paymentDal;
         }
-
+        [ValidationAspect(typeof(PaymentValidator))]
         public IResult Add(Payment payment)
         {
-           _paymentDal.Add(payment);
+            _paymentDal.Add(payment);
            return new SuccessResult(Messages.PaymentSuccessfull);
         }
-
         public IResult Delete(Payment payment)
         {
             _paymentDal.Delete(payment);

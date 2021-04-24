@@ -63,7 +63,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<CarDetailDto> GetDtoById(int CarId)
         {
-            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetails(c => c.Id == CarId));
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetails(c => c.CarId == CarId));
         }
         [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetDtoBrandAndColorId(int brandId, int colorId)
@@ -73,7 +73,8 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarsDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails());
+            var s = _carDal.GetCarsDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(s);
         }
         private IResult CheckIfWorkingTimeSystem()
         {

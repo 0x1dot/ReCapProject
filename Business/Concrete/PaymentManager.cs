@@ -22,7 +22,7 @@ namespace Business.Concrete
         public IResult Add(Payment payment)
         {
             _paymentDal.Add(payment);
-           return new SuccessResult(Messages.PaymentSuccessfull);
+            return new SuccessResult(Messages.PaymentSuccessfull);
         }
         public IResult Delete(Payment payment)
         {
@@ -34,7 +34,6 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Payment>>(_paymentDal.GetAll());
         }
-
         public IResult Update(Payment payment)
         {
             _paymentDal.Update(payment);

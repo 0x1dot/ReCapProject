@@ -16,5 +16,6 @@ namespace Entities.Concrete
         public string CarName { get; set; }
         public string ModelYear { get; set; }
         public int DailyPrice { get; set; }
+        public int CarFindeksPoint { get; set; }
     }
 }

@@ -44,11 +44,16 @@ namespace DataAccess.Concrete.EntityFramework
                              CarName = c.CarName,
                              DailyPrice = c.DailyPrice,
                              ModelYear = c.ModelYear,
-                             ImagePath = (from ci in reCapContext.CarImages where ci.CarId == c.Id select ci.ImagePath).FirstOrDefault()
-                         };
+                             CarFindeksPoint = c.CarFindeksPoint,
+                             ImagePath = setImg((from ci in reCapContext.CarImages where ci.CarId == c.Id select ci.ImagePath).FirstOrDefault())
+                          };
             return filter != null ? result.Where(filter).ToList() : result.ToList();
         }
-
+        public static string setImg(string path)
+        {
+            if (path == "" || path == null) return "default.jpg";
+            return path;
+        }
         public List<CarDetailDto> GetDtoByBrandId(int brandId)
         {
             return GetCarsDetails(b => b.BrandId == brandId);

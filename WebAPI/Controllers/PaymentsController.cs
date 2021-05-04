@@ -58,6 +58,6 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }        
+        }
     }
 }

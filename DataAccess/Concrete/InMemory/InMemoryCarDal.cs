@@ -85,5 +85,10 @@ namespace DataAccess.InMemory
         {
             throw new NotImplementedException();
         }
+
+        public string setImg(string path)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

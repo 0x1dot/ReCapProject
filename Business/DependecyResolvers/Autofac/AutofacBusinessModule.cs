@@ -56,6 +56,9 @@ namespace Business.DependecyResolvers.Autofac
             builder.RegisterType<PaymentManager>().As<IPaymentService>().SingleInstance();
             builder.RegisterType<EfPaymentDal>().As<IPaymentDal>().SingleInstance();
 
+            builder.RegisterType<UserFindeksPointManager>().As<IUserFindexPointService>().SingleInstance();
+            builder.RegisterType<EfUserFindeksPointDal>().As<IUserFindeksPointDal>().SingleInstance();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions()

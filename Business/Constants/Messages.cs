@@ -69,5 +69,11 @@ namespace Business.Constants
        
         public static string PaymentSuccessfull = "Ödeme başarı ile tamamlandı.";
         public static string PaymentError = "Ödeme sırasında bir hata oluştu";
+
+        public static string NotFindeksPoint = "Yetersiz Findeks Puanı !";
+        public static string MaxFindeksPointExceeded = "Tebrikler !\n" + "Max Findeks Puanına Ulaşıldı.";
+        public static string FindeksPointDeleted = "Findeks Puanı Silindi.";
+        public static string FindeksPointUpdated = "Findeks Puanı Güncellendi.";
+        public static string FindeksPointCreated = "Findeks Puanı Oluşturuldu.";
     }
 }

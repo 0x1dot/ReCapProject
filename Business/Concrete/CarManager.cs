@@ -21,11 +21,12 @@ namespace Business.Concrete
     {
         readonly ICarDal _carDal;
 
+
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
         }
-        //[SecuredOperation("admin,customer")]
+        [SecuredOperation("admin,customer")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         [PerformanceAspect(8)]
@@ -73,8 +74,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetCarsDetails()
         {
-            var s = _carDal.GetCarsDetails();
-            return new SuccessDataResult<List<CarDetailDto>>(s);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarsDetails());
         }
         private IResult CheckIfWorkingTimeSystem()
         {
@@ -94,7 +94,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
         }
-        //[SecuredOperation("admin,customer")]
+        [SecuredOperation("admin,customer")]
         [ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)

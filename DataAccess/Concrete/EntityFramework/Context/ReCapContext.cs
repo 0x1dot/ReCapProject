@@ -27,6 +27,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<CreditCardType> CreditCardTypes { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<UserFindeksPoint> UserFindeksPoints { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

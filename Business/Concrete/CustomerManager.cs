@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -40,10 +41,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomersDetail(), Messages.CustomersListed);
         }
-        
-        public IDataResult<Customer> GetById(int customerId)
+        [CacheAspect]
+        public IDataResult<Customer> GetByUserId(int UserId)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == customerId), Messages.CustomerListed);
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.UserId == UserId), Messages.CustomerListed);
         }
         [ValidationAspect(typeof(CustomerValidator))]
         public IResult Update(Customer customer)
